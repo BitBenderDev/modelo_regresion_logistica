@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 from data_preprocessor import DataPreprocessor
 
@@ -13,7 +13,11 @@ class LogisticCreditModel:
             class_weight="balanced",
             solver="lbfgs",
         )
+        # métricas del modelo
         self.accuracy = None
+        self.precision = None
+        self.recall = None
+        self.f1 = None
 
     def train(self):
         # Datos de entrenamiento ya escalados
@@ -28,7 +32,12 @@ class LogisticCreditModel:
         y_test = self.preprocessor.y_test
 
         y_pred = self.model.predict(X_test)
+
+        # métricas
         self.accuracy = accuracy_score(y_test, y_pred)
+        self.precision = precision_score(y_test, y_pred, zero_division=0)
+        self.recall = recall_score(y_test, y_pred, zero_division=0)
+        self.f1 = f1_score(y_test, y_pred, zero_division=0)
 
     def predecir(self, df_nuevo_scaled: pd.DataFrame):
         """

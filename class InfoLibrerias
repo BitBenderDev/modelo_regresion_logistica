@@ -1,0 +1,9 @@
+Librerías usadas en el proyecto:
+
+    - streamlit: interfaz gráfica (app.py)
+    - pandas: manejo de datos (carga y limpieza del dataset)
+    - numpy: operaciones numéricas
+    - scikit-learn: modelo de regresión logística, escalado, métricas
+    - joblib: guardar y cargar el modelo entrenado
+    """
+    
